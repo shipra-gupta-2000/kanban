@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+// TaskBoard.js
+import React, { useState, useEffect } from 'react';
+import TaskList from './components/TaskList'
+import NavbarTab from './components/NavbarTab'
+import './App.css'
 
-function App() {
+function TaskBoard() {
+  const [tasks, setTasks] = useState({
+    todo: [{ id: 1, title: 'Task 1', description: 'This is task 1' },
+    { id: 4, title: 'Task 4', description: 'This is task ' }],
+    doing: [{ id: 2, title: 'Task 2', description: 'This is task 2' }],
+    done: [{ id: 3, title: 'Task 3', description: 'This is task 3' }],
+  });
+
+  useEffect(() => {
+    // Fetch tasks from API or initialize with mock data
+    // Update tasks state
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavbarTab/>
+      <div className="taskboard">
+      <TaskList title="To Do" tasks={tasks.todo} />
+      <TaskList title="Doing" tasks={tasks.doing} />
+      <TaskList title="Done" tasks={tasks.done} />
+    </div>
     </div>
   );
 }
 
-export default App;
+export default TaskBoard;
